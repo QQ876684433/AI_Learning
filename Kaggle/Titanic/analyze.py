@@ -175,18 +175,18 @@ plt.show()
 
 # 船舱类型与存活的关系
 # Replace missing values with "U0"
-train_data.loc[train_data.Cabin.isnull(),'Cabin']='U0'
-train_data['Has_Cabin']=train_data['Cabin'].apply(lambda x:0 if x=='U0' else 1)
-train_data[['Has_Cabin','Survived']].groupby(['Has_Cabin']).mean().plot.bar()
+train_data.loc[train_data.Cabin.isnull(), 'Cabin'] = 'U0'
+train_data['Has_Cabin'] = train_data['Cabin'].apply(lambda x: 0 if x == 'U0' else 1)
+train_data[['Has_Cabin', 'Survived']].groupby(['Has_Cabin']).mean().plot.bar()
 
 # 对不同的船舱类型进行分析
-train_data['CabinLetter']=train_data['Cabin'].map(lambda x: re.compile("([a-zA-Z]+)").search(x).group())
-train_data['CabinLetter']=pd.factorize(train_data['CabinLetter'])[0]
-train_data[['CabinLetter','Survived']].groupby(['CabinLetter']).mean().plot.bar()
+train_data['CabinLetter'] = train_data['Cabin'].map(lambda x: re.compile("([a-zA-Z]+)").search(x).group())
+train_data['CabinLetter'] = pd.factorize(train_data['CabinLetter'])[0]
+train_data[['CabinLetter', 'Survived']].groupby(['CabinLetter']).mean().plot.bar()
 
 # 港口和存活与否的关系
-sns.countplot('Embarked',hue='Survived',data=train_data)
+sns.countplot('Embarked', hue='Survived', data=train_data)
 plt.title('Embarked and Survived')
-sns.factorplot('Embarked','Survived',data=train_data,size=3,aspect=2)
+sns.factorplot('Embarked', 'Survived', data=train_data, size=3, aspect=2)
 plt.title('Embarked and Survived rate')
 plt.show()
