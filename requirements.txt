@@ -1,3 +1,4 @@
+spinup
 scipy
 matplotlib
 numpy
